@@ -7,7 +7,7 @@ export const initialState = {
 const reducer = (state = initialState, { type, payload, ...action }) => {
     switch (type) {
         case "DELETE_PLAYER":
-        case "ADD_PLAYERS":
+        case "ADD_PLAYER":
         case "FETCH_PLAYERS":
             return {
                 ...state,
@@ -20,13 +20,13 @@ const reducer = (state = initialState, { type, payload, ...action }) => {
                 isLoading: false,
                 players: payload.data.data,
             };
-        case "ADD_PLAYERS_SUCCESS":
+        case "ADD_PLAYER_SUCCESS":
         case "DELETE_PLAYER_SUCCESS":
             return {
                 ...state,
                 isLoading: false,
             };
-        case "ADD_PLAYERS_FAIL":
+        case "ADD_PLAYER_FAIL":
         case "DELETE_PLAYER_FAIL":
             return {
                 ...state,

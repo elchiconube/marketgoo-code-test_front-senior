@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-    Section,
-    SectionHeader,
-    Icon,
-    Page,
-    SectionContent,
-    SectionFooter,
-} from "@marketgoo/ola";
+import { Section, SectionHeader, SectionContent } from "@marketgoo/ola";
 import {
     getPlayers,
     onDeletePlayer,
@@ -21,7 +14,7 @@ import PlayersTable from "../components/PlayersTable";
 const Players = () => {
     const dispatch = useDispatch();
     const [showForm, setShowForm] = useState(false);
-    const { isLoading, players, error } = useSelector((state) => state.app);
+    const { isLoading, players } = useSelector((state) => state.app);
 
     useEffect(() => {
         dispatch(getPlayers());
@@ -37,7 +30,6 @@ const Players = () => {
 
     return (
         <>
-            <Page icon={<Icon name="home" />} title="League Champion" url="/" />
             <Section>
                 <SectionHeader title="League Champion">
                     <p className="ola-callout ola-gray">
