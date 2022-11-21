@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node index.js && npx webpack-cli -w",
-    "test": "jest --transformIgnorePatterns \"node_modules/(?!@toolz/allow)/\" --env=jsdom"
+    "test": "jest",
+    "test:dev": "jest --watch"
   },
   "author": "Oscar Bustos",
   "license": "ISC",
