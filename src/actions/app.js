@@ -31,7 +31,7 @@ export const addPlayer = (data) => ({
 
 export const onAddPlayer = (data) => async (dispatch) => {
     const action = await dispatch(addPlayer(data));
-    if (action.type === "ADD_PLAYER_SUCCESS") dispatch(updatePlayers());
+    if (action.type === "ADD_PLAYER_SUCCESS") dispatch(getPlayers());
 };
 
 export const deletePlayer = (id) => ({
@@ -46,5 +46,5 @@ export const deletePlayer = (id) => ({
 
 export const onDeletePlayer = (id) => async (dispatch) => {
     const action = await dispatch(deletePlayer(id));
-    if (action.type === "DELETE_PLAYER_SUCCESS") dispatch(updatePlayers());
+    if (action.type === "DELETE_PLAYER_SUCCESS") dispatch(getPlayers());
 };
