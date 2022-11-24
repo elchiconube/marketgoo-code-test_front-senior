@@ -23,7 +23,6 @@ const reducer = (state = initialState, { type, payload, ...action }) => {
             return {
                 ...state,
                 players: sortedPlayers(filteredPlayers, state.sorting),
-                isLoading: true,
             };
         case "ADD_PLAYER":
             const newPlayers = [...state.players, payload.request.data];

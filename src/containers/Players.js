@@ -15,6 +15,8 @@ import PlayerSearch from "../components/PlayerSearch";
 import PlayerConfirmDelete from "../components/PlayerConfirmDelete";
 import { sortedPlayers, filteredPlayersByName } from "../utils";
 
+import "./Players.css";
+
 const Players = () => {
     const dispatch = useDispatch();
     const [showForm, setShowForm] = useState(false);
@@ -66,26 +68,30 @@ const Players = () => {
                     </p>
                 </SectionHeader>
                 <SectionContent>
-                    <div>
-                        <PlayerSearch
-                            handleSearchValue={setSearchValue}
-                            searchValue={searchValue}
-                        />
-                        <PlayerActions
+                    <div className="players-content">
+                        <div className="players-header">
+                            <PlayerSearch
+                                handleSearchValue={setSearchValue}
+                                searchValue={searchValue}
+                                isLoading={isLoading}
+                            />
+                            <PlayerActions
+                                isLoading={isLoading}
+                                showForm={showForm}
+                                setShowForm={setShowForm}
+                            />
+                        </div>
+
+                        <PlayersTable
+                            hasSearchValue={!!searchValue}
                             isLoading={isLoading}
-                            showForm={showForm}
-                            setShowForm={setShowForm}
+                            sorting={sorting}
+                            players={filteredPlayersByName(data, searchValue)}
+                            handleDeletePlayer={handleDeletePlayer}
+                            handleEditPlayer={handleEditPlayer}
+                            handleSorting={handleSorting}
                         />
                     </div>
-
-                    <PlayersTable
-                        sorting={sorting}
-                        players={filteredPlayersByName(data, searchValue)}
-                        handleDeletePlayer={handleDeletePlayer}
-                        handleEditPlayer={handleEditPlayer}
-                        handleSorting={handleSorting}
-                    />
-
                     <PlayerForm
                         showForm={showForm}
                         setShowForm={setShowForm}
