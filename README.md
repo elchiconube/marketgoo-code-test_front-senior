@@ -1,5 +1,13 @@
 This is a refactor exercise and his goal is to overall improve the proposed app. It shows a list of players with data about their team and their league score and we want you to propose solutions and implement them in order to improve the architecture, testability and UX. It's intentionally crappy so you can shine bright :) 
 
+
+- Buscador
+- Movido el botón de añadir arriba
+- Validación de formulario
+- He añadido A11 en formulario
+- Mejora de performance en añadir / borrar jugadores
+- Ordenación en la tabla
+
 ## Requirements
 
 There are some mandatory constraints you have to attend: 

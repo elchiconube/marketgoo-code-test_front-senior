@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "node index.js && npx webpack-cli -w",
+    "start": "node index.js && npx webpack-cli -p && npx webpack-cli -w",
     "test": "jest",
     "test:dev": "jest --watch"
   },

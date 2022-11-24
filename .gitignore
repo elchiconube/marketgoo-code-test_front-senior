@@ -1,3 +1,4 @@
 node_modules
 public
 database
+.DS_Store

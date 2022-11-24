@@ -51,31 +51,4 @@ describe("App reducer", () => {
             isLoading: false,
         });
     });
-
-    it("should set data when fetch detail success", () => {
-        expect(
-            reducer(
-                {
-                    isLoading: true,
-                },
-                {
-                    type: "FETCH_PLAYERS_SUCCESS",
-                    payload: {
-                        data: {
-                            data: [
-                                {
-                                    name: "player1",
-                                    team: "team1",
-                                    score: "123",
-                                },
-                            ],
-                        },
-                    },
-                }
-            )
-        ).toEqual({
-            isLoading: false,
-            players: [{ name: "player1", team: "team1", score: "123" }],
-        });
-    });
 });

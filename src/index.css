@@ -29,6 +29,13 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
+button{
+  border: none;
+  background: none;
+  appearance: none;
+  cursor: pointer;
+}
+
 .layout {
   max-width: 1200px;
   margin: 0 auto;

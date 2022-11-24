@@ -31,7 +31,7 @@ export const addPlayer = (data) => ({
 
 export const onAddPlayer = (data) => async (dispatch) => {
     const action = await dispatch(addPlayer(data));
-    if (action.type === "ADD_PLAYER_SUCCESS") dispatch(getPlayers());
+    if (action) dispatch(updatePlayers());
 };
 
 export const deletePlayer = (id) => ({
@@ -46,5 +46,18 @@ export const deletePlayer = (id) => ({
 
 export const onDeletePlayer = (id) => async (dispatch) => {
     const action = await dispatch(deletePlayer(id));
-    if (action.type === "DELETE_PLAYER_SUCCESS") dispatch(getPlayers());
+    if (action) dispatch(updatePlayers());
+};
+
+export const updateSorting = (field) => async (dispatch, getState) => {
+    const {
+        app: { sorting },
+    } = getState();
+
+    const order =
+        sorting.field === field && sorting.order === "asc" ? "desc" : "asc";
+
+    const payload = { field, order };
+
+    dispatch({ type: "UPDATE_SORTING", payload });
 };

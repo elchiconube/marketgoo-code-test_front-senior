@@ -97,7 +97,6 @@ describe("App initialize", () => {
         });
 
         expect(actionsDispatched[1].type).toEqual("ADD_PLAYER_SUCCESS");
-        expect(actionsDispatched[2].type).toEqual("FETCH_PLAYERS");
     });
 
     it("should delete player", () => {
@@ -137,6 +136,6 @@ describe("App initialize", () => {
         });
 
         expect(actionsDispatched[1].type).toEqual("DELETE_PLAYER_SUCCESS");
-        expect(actionsDispatched[2].type).toEqual("FETCH_PLAYERS");
+        expect(actionsDispatched[2].type).toEqual("UPDATE_PLAYERS");
     });
 });

@@ -1,37 +1,47 @@
 import React from "react";
-import { Button, Table, TableRow, TableCell } from "@marketgoo/ola";
-import AppLoader from "./AppLoader";
-import PlayerActions from "./PlayerActions";
+import {
+    Button,
+    Table,
+    TableRow,
+    TableCell,
+    ButtonGroup,
+    Icon,
+    Spinner,
+} from "@marketgoo/ola";
 
 const PlayersTable = ({
+    sorting,
     players,
     handleDeletePlayer,
-    isLoading,
-    showForm,
-    setShowForm,
-}) =>
-    !isLoading ? (
-        <Table
-            responsive={true}
-            caption={
-                <PlayerActions
-                    isLoading={isLoading}
-                    showForm={showForm}
-                    setShowForm={setShowForm}
-                />
-            }
-        >
+    handleEditPlayer,
+    handleSorting,
+}) => {
+    const headings = [
+        { field: "name", label: "Player" },
+        { field: "team", label: "Team" },
+        { field: "score", label: "Score" },
+    ];
+
+    return (
+        <Table responsive={true}>
             <thead>
                 <TableRow>
-                    <TableCell>
-                        <strong>Player</strong>
-                    </TableCell>
-                    <TableCell>
-                        <strong>Team</strong>
-                    </TableCell>
-                    <TableCell variant="numeric">
-                        <strong>Score</strong>
-                    </TableCell>
+                    {headings.map(({ field, label }) => (
+                        <TableCell>
+                            <button onClick={() => handleSorting(field)}>
+                                <strong>{label}</strong>
+                                {sorting.field === field && (
+                                    <Icon
+                                        name={
+                                            sorting.order === "asc"
+                                                ? "chevronUp"
+                                                : "chevronDown"
+                                        }
+                                    />
+                                )}
+                            </button>
+                        </TableCell>
+                    ))}
                     <TableCell variant="right">
                         <strong>Actions</strong>
                     </TableCell>
@@ -39,26 +49,43 @@ const PlayersTable = ({
             </thead>
             <tbody>
                 {players &&
-                    players.map(({ id, name, team, score }) => (
-                        <TableRow key={id}>
+                    players.map(({ id, name, team, score }, k) => (
+                        <TableRow key={k}>
                             <TableCell>{name}</TableCell>
                             <TableCell>{team}</TableCell>
                             <TableCell variant="numeric">{score}</TableCell>
                             <TableCell variant="right">
-                                <Button
-                                    icon="close"
-                                    variant="secondary"
-                                    onClick={() => handleDeletePlayer(id)}
-                                >
-                                    Remove
-                                </Button>
+                                {id ? (
+                                    <ButtonGroup variant="reversed">
+                                        <Button
+                                            icon="close"
+                                            variant="destructive"
+                                            onClick={() =>
+                                                handleDeletePlayer(id)
+                                            }
+                                        >
+                                            Remove
+                                        </Button>
+
+                                        <Button
+                                            icon="add"
+                                            variant="secondary"
+                                            onClick={() => handleEditPlayer(id)}
+                                        >
+                                            Edit
+                                        </Button>
+                                    </ButtonGroup>
+                                ) : (
+                                    <div>
+                                        <Spinner />
+                                    </div>
+                                )}
                             </TableCell>
                         </TableRow>
                     ))}
             </tbody>
         </Table>
-    ) : (
-        <AppLoader />
     );
+};
 
 export default PlayersTable;
