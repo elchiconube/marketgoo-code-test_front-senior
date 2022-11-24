@@ -1,3 +1,10 @@
+:root {
+    --main-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+        rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+    --main-transition: all 300ms ease-in-out;
+    --body-background: #f6f6f6;
+}
+
 @import "~@marketgoo/ola/dist/index.css";
 
 html,
@@ -108,6 +115,19 @@ section {
     display: block;
 }
 
+body {
+    background: var(--body-background);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+}
+
 button {
     border: none;
     background: none;
@@ -116,19 +136,18 @@ button {
     padding: 0;
 }
 
-.app-header{
-  background: var(--brand);
-  height: 56px;
-  position: sticky;
-  top: 0;
+.app-header {
+    background: var(--brand);
+    position: sticky;
+    top: 0;
+    padding: var(--size-5);
 }
 
 .layout {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 32px;
-    background: var(--gray-xxlight);
-    height: calc(100vh - 56px);
+    padding: var(--size-5);
+    height: calc(100vh - var(--size-8));
     overflow: auto;
 }
 
@@ -136,10 +155,14 @@ button {
     text-align: center;
 }
 
+.right {
+    text-align: right;
+}
+
 .table-header {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: var(--size-2);
     color: var(--gray);
     font: var(--font-callout);
 }
@@ -152,26 +175,50 @@ button {
     color: var(--accent);
 }
 
-.table-actions {
-    height: 100%;
+.actions {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--size-2);
     justify-content: flex-end;
 }
 
-.table-action {
+.action {
     background-color: var(--accent);
     color: var(--white);
-    padding: 7px;
+    padding: var(--size-3);
     border-radius: 100%;
 }
 
-.table-action.delete {
+.action.delete {
     background-color: var(--error);
 }
 
-.table-action > svg.ola_icon.is-medium {
+.action > svg.ola_icon.is-medium {
     width: var(--size-4);
     height: var(--size-4);
+}
+
+.toggle {
+    display: inline-flex;
+    gap: var(--size-1);
+    background: var(--gray-light);
+    border-radius: var(--size-7);
+    align-items: center;
+    overflow: hidden;
+    color: var(--white);
+}
+
+.toggle > button {
+    padding: var(--size-4) var(--size-5);
+    transition: var(--main-transition);
+    background: transparent;
+}
+
+.toggle > button > svg {
+    width: var(--size-5);
+    fill: white;
+}
+
+.toggle > button.active {
+    background: var(--brand);
 }

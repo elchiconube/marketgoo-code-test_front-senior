@@ -5,10 +5,16 @@ export const initialState = {
     players: null,
     error: null,
     sorting: { field: "score", order: "desc" },
+    layout: "grid",
 };
 
 const reducer = (state = initialState, { type, payload, ...action }) => {
     switch (type) {
+        case "UPDATE_LAYOUT":
+            return {
+                ...state,
+                layout: payload,
+            };
         case "UPDATE_SORTING":
             return {
                 ...state,

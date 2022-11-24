@@ -49,6 +49,11 @@ export const onDeletePlayer = (id) => async (dispatch) => {
     if (action) dispatch(updatePlayers());
 };
 
+export const updateLayout = (payload) => ({
+    type: "UPDATE_LAYOUT",
+    payload,
+});
+
 export const updateSorting = (field) => async (dispatch, getState) => {
     const {
         app: { sorting },

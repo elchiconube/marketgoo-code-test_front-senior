@@ -82,7 +82,7 @@ const PlayerForm = ({ handleAddPlayer, showForm, setShowForm }) => {
     };
 
     return (
-        <Modal open={showForm} onClose={() => setShowForm(false)}>
+        <Modal open={showForm} onClose={handleCancel}>
             <ModalHeader title="Add Player" />
             <ModalContent>
                 <form className="ola_ly-form" onSubmit={handleSubmit(onSubmit)}>

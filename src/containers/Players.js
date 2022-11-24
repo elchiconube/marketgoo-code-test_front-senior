@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Section, SectionHeader, SectionContent } from "@marketgoo/ola";
+import { Section, SectionContent } from "@marketgoo/ola";
 import {
     getPlayers,
     deletePlayer,
     onAddPlayer,
     updateSorting,
+    updateLayout,
 } from "../actions/app";
-
-import PlayerForm from "./../components/PlayerForm";
-import PlayersTable from "../components/PlayersTable";
-import PlayerActions from "../components/PlayerActions";
-import PlayerSearch from "../components/PlayerSearch";
-import PlayerConfirmDelete from "../components/PlayerConfirmDelete";
 import { sortedPlayers, filteredPlayersByName } from "../utils";
+
+import PlayerConfirmDelete from "../components/PlayerConfirmDelete";
+import PlayerForm from "./../components/PlayerForm";
+import PlayerSearch from "../components/PlayerSearch";
+import PlayersActions from "../components/PlayersActions";
+import PlayersList from "../components/PlayersList";
+import ToggleView from "../components/ToggleView";
 
 import "./Players.css";
 
@@ -25,7 +27,9 @@ const Players = () => {
     const [player, setPlayer] = useState(null);
     const [searchValue, setSearchValue] = useState("");
 
-    const { isLoading, players, sorting } = useSelector((state) => state.app);
+    const { isLoading, players, sorting, layout } = useSelector(
+        (state) => state.app
+    );
 
     useEffect(() => {
         dispatch(getPlayers());
@@ -57,51 +61,54 @@ const Players = () => {
 
     const handleSorting = (data) => dispatch(updateSorting(data));
 
-    const handleEditPlayer = (id) => console.log("Edit player", id);
+    const handleUpdateLayout = (value) => dispatch(updateLayout(value));
 
     return (
         <>
             <Section>
-                <SectionHeader title="League Champion">
-                    <p className="ola-callout ola-gray">
-                        Welcome to the champion dashboard
-                    </p>
-                </SectionHeader>
                 <SectionContent>
                     <div className="players-content">
                         <div className="players-header">
                             <PlayerSearch
                                 handleSearchValue={setSearchValue}
+                                isLoading={isLoading}
                                 searchValue={searchValue}
-                                isLoading={isLoading}
                             />
-                            <PlayerActions
+
+                            <PlayersActions
                                 isLoading={isLoading}
-                                showForm={showForm}
                                 setShowForm={setShowForm}
+                                showForm={showForm}
                             />
                         </div>
 
-                        <PlayersTable
+                        <div className="view-selector right">
+                            <ToggleView
+                                handleUpdateLayout={handleUpdateLayout}
+                                layout={layout}
+                            />
+                        </div>
+
+                        <PlayersList
+                            handleDeletePlayer={handleDeletePlayer}
+                            handleSorting={handleSorting}
                             hasSearchValue={!!searchValue}
                             isLoading={isLoading}
-                            sorting={sorting}
+                            layout={layout}
                             players={filteredPlayersByName(data, searchValue)}
-                            handleDeletePlayer={handleDeletePlayer}
-                            handleEditPlayer={handleEditPlayer}
-                            handleSorting={handleSorting}
+                            sorting={sorting}
                         />
                     </div>
                     <PlayerForm
-                        showForm={showForm}
-                        setShowForm={setShowForm}
                         handleAddPlayer={handleAddPlayer}
+                        setShowForm={setShowForm}
+                        showForm={showForm}
                     />
                     <PlayerConfirmDelete
                         handleOnConfirmDelete={handleOnConfirmDelete}
-                        showConfirmation={showConfirmation}
-                        setShowConfirmation={setShowConfirmation}
                         player={player}
+                        setShowConfirmation={setShowConfirmation}
+                        showConfirmation={showConfirmation}
                     />
                 </SectionContent>
             </Section>

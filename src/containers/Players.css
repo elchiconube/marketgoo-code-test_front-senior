@@ -1,23 +1,117 @@
 .players-header {
     display: flex;
-    gap: 16px;
+    gap: var(--size-5);
     align-items: center;
     justify-content: space-between;
-    padding: 16px 32px;
-    background: white;
-    border-radius: 16px;
-    margin-bottom: 16px;
-    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
-        rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+    padding: var(--size-5);
+    background: var(--white);
+    border-radius: var(--size-5);
+    margin-bottom: var(--size-5);
+    box-shadow: var(--main-shadow);
 }
 
-.players-content {
+.view-selector{
+    padding: 0 var(--size-5);
+}
+
+.players-grid {
+    margin-top: var(--size-5);
+}
+
+.players-grid ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    list-style: none;
+    padding: var(--size-5);
+    grid-gap: var(--size-5);
+}
+
+.players-grid ul li {
+    background: var(--white);
+    border-radius: var(--size-5);
+    padding: var(--size-5);
+    position: relative;
+    text-align: center;
+    box-shadow: var(--main-shadow);
+}
+
+.players-grid ul li figure {
+    display: block;
+    width: var(--size-10);
+    background: var(--brand);
+    border-radius: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    transition: var(--main-transition);
+    transform: translateY(-28px);
+}
+
+.players-grid ul li h1 {
+    font-size: var(--size-8);
+}
+
+.players-grid ul li .actions {
+    transition: var(--main-transition);
+    opacity: 0;
+    visibility: hidden;
+    margin: 0;
+}
+
+.players-grid ul li:hover .actions {
+    opacity: 1;
+    visibility: visible;
+}
+
+.players-grid ul li:first-child figure {
+    background: var(--premium);
+}
+
+.players-grid ul li:first-child .position {
+    color: var(--premium);
+}
+
+.players-grid ul li .position {
+    position: absolute;
+    top: 0;
+    right: 8px;
+    opacity: 0.3;
+    font-size: 76px;
+    font-weight: bold;
+    transition: var(--main-transition);
+}
+
+.players-grid ul li:hover .position {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.players-grid ul li:hover figure {
+    transform: translate(-50px, -28px);
+}
+
+.players-grid ul li:nth-child(2) figure {
+    background: var(--gray-light);
+}
+.players-grid ul li:nth-child(2) .position {
+    color: var(--gray-light);
+}
+
+.players-grid ul li:nth-child(3) figure {
+    background: var(--pict-brown);
+}
+.players-grid ul li:nth-child(3) .position {
+    color: var(--pict-brown);
+}
+
+.players-grid ul li article div {
+    margin-bottom: var(--size-5);
 }
 
 .players-table {
-    padding: 32px;
-    background: white;
-    border-radius: 16px;
-    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
-        rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+    padding: var(--size-5);
+    background: var(--white);
+    border-radius: var(--size-5);
+    box-shadow: var(--main-shadow);
+    margin-top: var(--size-5);
+
 }

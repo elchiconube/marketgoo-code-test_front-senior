@@ -1,7 +1,7 @@
 import React from "react";
 import { Table, TableRow, TableCell } from "@marketgoo/ola";
 import SortingIcon from "./SortingIcon";
-import PlayerTableActions from "./PlayerTableActions";
+import PlayerActions from "./PlayerActions";
 import NoResults from "./NoResults";
 
 const headings = [
@@ -11,13 +11,12 @@ const headings = [
 ];
 
 const PlayersTable = ({
+    handleDeletePlayer,
+    handleSorting,
     hasSearchValue,
     isLoading,
-    sorting,
     players,
-    handleDeletePlayer,
-    handleEditPlayer,
-    handleSorting,
+    sorting,
 }) => {
     return (
         <div className="players-table">
@@ -53,11 +52,10 @@ const PlayersTable = ({
                                 <TableCell>{team}</TableCell>
                                 <TableCell>{score}</TableCell>
                                 <TableCell variant="right">
-                                    <PlayerTableActions
+                                    <PlayerActions
                                         id={id}
                                         isLoading={isLoading}
                                         handleDeletePlayer={handleDeletePlayer}
-                                        handleEditPlayer={handleEditPlayer}
                                     />
                                 </TableCell>
                             </TableRow>
